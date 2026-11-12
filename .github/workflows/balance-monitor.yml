@@ -39,9 +39,13 @@ jobs:
           BALANCE_DIVISOR: ${{ vars.BALANCE_DIVISOR }}
           ALERT_THRESHOLD: ${{ vars.ALERT_THRESHOLD }}
           RECOVERY_THRESHOLD: ${{ vars.RECOVERY_THRESHOLD }}
+          NIXIANGSHI_API_TOKEN: ${{ secrets.NIXIANGSHI_API_TOKEN }}
+          NIXIANGSHI_ALERT_THRESHOLD: ${{ vars.NIXIANGSHI_ALERT_THRESHOLD }}
+          NIXIANGSHI_RECOVERY_THRESHOLD: ${{ vars.NIXIANGSHI_RECOVERY_THRESHOLD }}
         run: python monitor.py
 
       - name: Save alert state
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
